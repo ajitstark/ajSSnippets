@@ -1,0 +1,10 @@
+//React Native Excel export
+
+var ws = XLSX.utils.json_to_sheet(data);
+var wb = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb,ws,"Prova");
+const wbout = XLSX.write(wb, {type:'binary', bookType:"xlsx"});
+var RNFS = require('react-native-fs');
+var file = RNFS.ExternalStorageDirectoryPath + '/test.xlsx';
+console.log(file)
+writeFile(file, wbout, 'ascii').then((r)=>{console.log(r)}).catch((e)=>{ console.log(e)});
